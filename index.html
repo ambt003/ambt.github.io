@@ -21,10 +21,10 @@
         .love-message { background: #fff0f5; padding: 20px; border-radius: 15px; border-right: 5px solid #ff4081; margin: 20px 0; }
         .heart { color: #ff4081; font-size: 40px; animation: heartbeat 1.5s infinite; margin-bottom: 15px; }
         @keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .soundcloud-player { width: 100%; height: 166px; border-radius: 10px; margin: 20px 0; border: 2px solid #ff4081; }
+        .music-section { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 2px dashed #ff4081; margin: 20px 0; }
         .photo-description { color: #666; font-size: 14px; margin-top: 8px; font-weight: bold; }
         .footer-note { color: #888; font-size: 14px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px; }
-        @media (max-width: 600px) { .page { padding: 20px; } h1 { font-size: 24px; } button { padding: 12px 30px; } .soundcloud-player { height: 120px; } }
+        @media (max-width: 600px) { .page { padding: 20px; } h1 { font-size: 24px; } button { padding: 12px 30px; } }
     </style>
 </head>
 <body>
@@ -41,30 +41,35 @@
         <div class="heart">💌</div>
         <h2>رسالة لروحي</h2>
         <div class="love-message">
-            <p>يا أغلى ما أملك</p>
+            <p>بأ أعلى ما أملك</p>
             <p>حياتي من غيرك متسولش</p>
             <p>شكراً على كل لحظة سعيدة بينا</p>
             <p>مش هقدر أوصف قد إيه بحيك</p>
-            <p>انا اسف سامحيني مقدرش اعيش منغيرك</p>
+            <p>اذا اسف سامحيني مقدرش اعيش منغيرك</p>
             <p style="margin-top: 20px; color: #e91e63; font-weight: bold;">إلى الأيد<br>حبيبك</p>
         </div>
         
-        <h3>🎵 اغنية "الاو انا معاك"</h3>
-        
-        <!-- مشغل SoundCloud المضمن -->
-        <iframe 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1911234567&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
-            class="soundcloud-player"
-            scrolling="no" 
-            frameborder="no" 
-            allow="autoplay">
-        </iframe>
-        
-        <!-- رابط SoundCloud المباشر كبديل -->
-        <div style="margin: 10px 0;">
-            <a href="https://on.soundcloud.com/ahchkqii99wcvp2ai5" target="_blank" style="color: #ff5500; text-decoration: none; font-weight: bold;">
-                🔊 اضغطي هنا علشان تفتحي الأغنية في تطبيق SoundCloud
-            </a>
+        <!-- قسم الأغنية المعدل مع Vocaroo -->
+        <div class="music-section">
+            <h3>🎵 اغنية "الاو انا معاك"</h3>
+            
+            <!-- مشغل الصوت -->
+            <audio id="love-song" controls style="width: 100%; margin: 15px 0;">
+                <source src="https://voca.ro/1oR5IvWwDG6w" type="audio/mpeg">
+                المتصفح لا يدعم تشغيل الصوت
+            </audio>
+            
+            <!-- زر تشغيل تلقائي -->
+            <button onclick="playSongAutomatically()" style="background: linear-gradient(45deg, #4CAF50, #2E7D32); margin: 10px;">
+                🔊 اضغطي هنا علشان الأغنية تبدأ لوحدها
+            </button>
+            
+            <!-- رابط البديل -->
+            <div style="margin-top: 10px;">
+                <a href="https://voca.ro/1oR5IvWwDG6w" target="_blank" style="color: #2196F3; text-decoration: none;">
+                    🔗 افتحي الأغنية في صفحة جديدة
+                </a>
+            </div>
         </div>
         
         <button onclick="startJourney()">ادنى رحلتنا 🚀</button>
@@ -110,16 +115,18 @@
                 document.getElementById('login-page').classList.remove('active');
                 document.getElementById('message-page').classList.add('active');
                 
-                // محاولة تشغيل SoundCloud تلقائياً بعد ثانيتين
-                setTimeout(() => {
-                    const iframe = document.querySelector('iframe');
-                    if(iframe) {
-                        iframe.contentWindow.postMessage('{"method":"play"}', '*');
-                    }
-                }, 2000);
+                // محاولة تشغيل الأغنية بعد 1 ثانية
+                setTimeout(playSongAutomatically, 1000);
             } else {
                 alert('حبيبتي، هذا مش تاريخ ميلادك الصحيح! حاولي مرة تانية ❤️');
             }
+        }
+        
+        function playSongAutomatically() {
+            const audio = document.getElementById('love-song');
+            audio.play().catch(error => {
+                console.log('التشغيل التلقائي متوقف، يمكن تشغيله يدوياً');
+            });
         }
         
         function startJourney() {
