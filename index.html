@@ -24,14 +24,18 @@
         .music-section { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 2px dashed #ff4081; margin: 20px 0; }
         .photo-description { color: #666; font-size: 14px; margin-top: 8px; font-weight: bold; }
         .footer-note { color: #888; font-size: 14px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px; }
+        .play-button { background: linear-gradient(45deg, #FF9800, #F57C00); color: white; border: none; padding: 12px 30px; border-radius: 50px; cursor: pointer; font-size: 18px; margin: 10px; display: inline-flex; align-items: center; }
+        .play-button i { margin-left: 8px; }
         @media (max-width: 600px) { .page { padding: 20px; } h1 { font-size: 24px; } button { padding: 12px 30px; } }
     </style>
+    <!-- أيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div id="login-page" class="page active">
         <div class="heart">❤️</div>
-        <h1>مرحبا ب اقرب انسانة الى قلبي</h1>
-        <p>أدخلي اليوم اللي اتولدت فيه اجمل بنت</p>
+        <h1>مرحبا بأقرب إنسانة إلى قلبي</h1>
+        <p>أدخلي اليوم اللي اتولدت فيه أجمل بنت</p>
         <input type="date" id="birthdate">
         <button onclick="checkBirthdate()">أدخلي يا حبيبتي</button>
         <p style="color: #888; font-size: 14px; margin-top: 20px;">باسورد تليفوني</p>
@@ -41,52 +45,55 @@
         <div class="heart">💌</div>
         <h2>رسالة لروحي</h2>
         <div class="love-message">
-            <p>بأ أعلى ما أملك</p>
-            <p>حياتي من غيرك متسولش</p>
+            <p>يا أغلى ما أملك</p>
+            <p>حياتي من غيرك ما تسواش</p>
             <p>شكراً على كل لحظة سعيدة بينا</p>
-            <p>مش هقدر أوصف قد إيه بحيك</p>
-            <p>اذا اسف سامحيني مقدرش اعيش منغيرك</p>
-            <p style="margin-top: 20px; color: #e91e63; font-weight: bold;">إلى الأيد<br>حبيبك</p>
+            <p>مش هقدر أوصف قد إيه بحبك</p>
+            <p>أنا أسف سامحيني مقدرش أعيش من غيرك</p>
+            <p style="margin-top: 20px; color: #e91e63; font-weight: bold;">إلى الأبد<br>حبيبك</p>
         </div>
         
-        <!-- قسم الأغنية المعدل مع Vocaroo -->
+        <!-- قسم الأغنية الجديد -->
         <div class="music-section">
-            <h3>🎵 اغنية "الاو انا معاك"</h3>
+            <h3>🎵 أغنية "الا و أنا معاك"</h3>
             
-            <!-- مشغل الصوت -->
-            <audio id="love-song" controls style="width: 100%; margin: 15px 0;">
+            <!-- مشغل الصوت المخفي -->
+            <audio id="love-song" style="display: none;">
                 <source src="https://voca.ro/1oR5IvWwDG6w" type="audio/mpeg">
-                المتصفح لا يدعم تشغيل الصوت
             </audio>
             
-            <!-- زر تشغيل تلقائي -->
-            <button onclick="playSongAutomatically()" style="background: linear-gradient(45deg, #4CAF50, #2E7D32); margin: 10px;">
-                🔊 اضغطي هنا علشان الأغنية تبدأ لوحدها
+            <!-- زر التشغيل الكبير -->
+            <button class="play-button" onclick="playLoveSong()">
+                <i class="fas fa-play"></i> اضغطي هنا علشان تسمعي الأغنية
             </button>
             
+            <!-- رسالة حالة -->
+            <p id="song-status" style="color: #666; font-size: 14px; margin-top: 10px;">
+                الأغنية جاهزة، اضغطي على الزر علشان تسمعيها 🎵
+            </p>
+            
             <!-- رابط البديل -->
-            <div style="margin-top: 10px;">
-                <a href="https://voca.ro/1oR5IvWwDG6w" target="_blank" style="color: #2196F3; text-decoration: none;">
-                    🔗 افتحي الأغنية في صفحة جديدة
+            <div style="margin-top: 15px;">
+                <a href="https://voca.ro/1oR5IvWwDG6w" target="_blank" 
+                   style="color: #2196F3; text-decoration: none; font-weight: bold; padding: 8px 15px; border: 2px solid #2196F3; border-radius: 25px;">
+                    <i class="fas fa-external-link-alt"></i> افتحي الأغنية في صفحة جديدة
                 </a>
             </div>
         </div>
         
-        <button onclick="startJourney()">ادنى رحلتنا 🚀</button>
-        <div class="footer-note">الأغنية متشتقل لوحدها ملا تقتحي الصفحة</div>
+        <button onclick="startJourney()">إبدأي رحلتنا 🚀</button>
+        <div class="footer-note">الأغنية هتشتغل لما تضغطي على الزر</div>
     </div>
     
     <div id="gallery-page" class="page">
         <div class="heart">📸</div>
         <h2>رحلة حبنا</h2>
-        <p>شوفي قد إيه أياستا جميلة</p>
+        <p>شوفي قد إيه أيامنا جميلة</p>
         
-        <div id="photo-gallery" class="photo-gallery">
-            <!-- الصور تضاف تلقائياً -->
-        </div>
+        <div id="photo-gallery" class="photo-gallery"></div>
         
         <button onclick="goToMessage()">← العودة للرسالة</button>
-        <button onclick="showSurprise()" style="background: linear-gradient(45deg, #4CAF50, #2E7D32);">🎀 كشفى الفاجأة</button>
+        <button onclick="showSurprise()" style="background: linear-gradient(45deg, #4CAF50, #2E7D32);">🎀 اكشفي المفاجأة</button>
     </div>
 
     <div id="surprise-page" class="page">
@@ -94,7 +101,7 @@
         <h2>هدية صغيرة 🎀</h2>
         <div class="love-message">
             <p>محتاج أقولك إني بحبك</p>
-            <p style="color: #e91e63; font-weight: bold; margin-top: 15px;">ف اقرب وقت هاجي عشان اشوفك</p>
+            <p style="color: #e91e63; font-weight: bold; margin-top: 15px;">في أقرب وقت هاجي عشان أشوفك</p>
         </div>
         <button onclick="goToGallery()">← العودة للصور</button>
         <button onclick="restartJourney()" style="background: linear-gradient(45deg, #2196F3, #0D47A1);">🔄 ابدئي من الأول</button>
@@ -103,30 +110,55 @@
     <script>
         const HER_BIRTHDATE = '2000-01-30';
         const OUR_PHOTOS = [
-            { url: 'https://drive.google.com/uc?export=view&id=1zzXL-ed-TRxA7QtxgjfihseuJUcvNksu', description: 'اول دبت ليبنا سوا' },
-            { url: 'https://drive.google.com/uc?export=view&id=1t_K15GyxKh9atfWwHatoeRgiLhbOYTXT', description: 'بوم ما وصانتبني كان يوم مميز' },
-            { url: 'https://drive.google.com/uc?export=view&id=1QaqAbKSRDXb3IAO06cQnvhKUjHL9Czku', description: 'بوم السويرجيت من اميز اياستا سوا مش محتاج' },
-            { url: 'https://drive.google.com/uc?export=view&id=1CcgYjHBQLyfYxnDyr6q3nZdQEreu_Lqz', description: 'من احلى و اجمل الصور ليبنا سوا و الأقرب لقلبي' }
+            { url: 'https://drive.google.com/uc?export=view&id=1zzXL-ed-TRxA7QtxgjfihseuJUcvNksu', description: 'أول ديت لينا سوا' },
+            { url: 'https://drive.google.com/uc?export=view&id=1t_K15GyxKh9atfWwHatoeRgiLhbOYTXT', description: 'يوم ما وصلتيني كان يوم مميز' },
+            { url: 'https://drive.google.com/uc?export=view&id=1QaqAbKSRDXb3IAO06cQnvhKUjHL9Czku', description: 'يوم السوبرجيت من أميز أيامنا سوا مش محتاج' },
+            { url: 'https://drive.google.com/uc?export=view&id=1CcgYjHBQLyfYxnDyr6q3nZdQEreu_Lqz', description: 'من أحلى وأجمل الصور لينا سوا والأقرب لقلبي' }
         ];
+        
+        let songPlayed = false;
         
         function checkBirthdate() {
             const input = document.getElementById('birthdate').value;
             if(input === HER_BIRTHDATE) {
                 document.getElementById('login-page').classList.remove('active');
                 document.getElementById('message-page').classList.add('active');
-                
-                // محاولة تشغيل الأغنية بعد 1 ثانية
-                setTimeout(playSongAutomatically, 1000);
             } else {
                 alert('حبيبتي، هذا مش تاريخ ميلادك الصحيح! حاولي مرة تانية ❤️');
             }
         }
         
-        function playSongAutomatically() {
+        function playLoveSong() {
             const audio = document.getElementById('love-song');
-            audio.play().catch(error => {
-                console.log('التشغيل التلقائي متوقف، يمكن تشغيله يدوياً');
-            });
+            const status = document.getElementById('song-status');
+            const playButton = document.querySelector('.play-button');
+            
+            if (!songPlayed) {
+                audio.play()
+                    .then(() => {
+                        status.innerHTML = '🎵 الأغنية شغالة دلوقتي! استمتعي بيها';
+                        status.style.color = '#4CAF50';
+                        playButton.innerHTML = '<i class="fas fa-pause"></i> وقفي الأغنية';
+                        playButton.onclick = pauseLoveSong;
+                        songPlayed = true;
+                    })
+                    .catch(error => {
+                        status.innerHTML = '⚠️ اضغطي على الرابط علشان تفتحي الأغنية في صفحة جديدة';
+                        status.style.color = '#FF9800';
+                    });
+            }
+        }
+        
+        function pauseLoveSong() {
+            const audio = document.getElementById('love-song');
+            const status = document.getElementById('song-status');
+            const playButton = document.querySelector('.play-button');
+            
+            audio.pause();
+            status.innerHTML = '⏸️ الأغنية متوقفة، اضغطي علشان تكملي';
+            status.style.color = '#666';
+            playButton.innerHTML = '<i class="fas fa-play"></i> كمل الأغنية';
+            playButton.onclick = playLoveSong;
         }
         
         function startJourney() {
@@ -169,10 +201,14 @@
             document.getElementById('surprise-page').classList.remove('active');
             document.getElementById('login-page').classList.add('active');
             document.getElementById('birthdate').value = '';
+            songPlayed = false;
         }
         
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('birthdate').max = new Date().toISOString().split('T')[0];
+            
+            // إظهار رسالة ترحيب في الكونسول
+            console.log('💖 موقع الحب جاهز! تاريخ الميلاد: 30 يناير 2000');
         });
     </script>
 </body>
