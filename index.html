@@ -53,7 +53,7 @@
             <p style="margin-top: 20px; color: #e91e63; font-weight: bold;">إلى الأبد<br>حبيبك</p>
         </div>
         
-        <!-- قسم الأغنية الجديد -->
+        <!-- قسم الأغنية -->
         <div class="music-section">
             <h3>🎵 أغنية "الا و أنا معاك"</h3>
             
@@ -85,12 +85,46 @@
         <div class="footer-note">الأغنية هتشتغل لما تضغطي على الزر</div>
     </div>
     
+    <!-- صفحة الصور المعدلة -->
     <div id="gallery-page" class="page">
         <div class="heart">📸</div>
         <h2>رحلة حبنا</h2>
         <p>شوفي قد إيه أيامنا جميلة</p>
         
-        <div id="photo-gallery" class="photo-gallery"></div>
+        <!-- عرض الصور مباشرة بدون JavaScript -->
+        <div class="photo-gallery">
+            <div style="text-align: center;">
+                <img src="https://drive.google.com/uc?export=view&id=1zzXL-ed-TRxA7QtxgjfihseuJUcvNksu" 
+                     class="memory-photo" 
+                     alt="أول ديت لينا سوا"
+                     onclick="window.open('https://drive.google.com/uc?export=view&id=1zzXL-ed-TRxA7QtxgjfihseuJUcvNksu', '_blank')">
+                <div class="photo-description">أول ديت لينا سوا</div>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="https://drive.google.com/uc?export=view&id=1t_K15GyxKh9atfWwHatoeRgiLhbOYTXT" 
+                     class="memory-photo" 
+                     alt="يوم ما وصلتيني كان يوم مميز"
+                     onclick="window.open('https://drive.google.com/uc?export=view&id=1t_K15GyxKh9atfWwHatoeRgiLhbOYTXT', '_blank')">
+                <div class="photo-description">يوم ما وصلتيني كان يوم مميز</div>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="https://drive.google.com/uc?export=view&id=1QaqAbKSRDXb3IAO06cQnvhKUjHL9Czku" 
+                     class="memory-photo" 
+                     alt="يوم السوبرجيت من أميز أيامنا سوا مش محتاج"
+                     onclick="window.open('https://drive.google.com/uc?export=view&id=1QaqAbKSRDXb3IAO06cQnvhKUjHL9Czku', '_blank')">
+                <div class="photo-description">يوم السوبرجيت من أميز أيامنا سوا مش محتاج</div>
+            </div>
+            
+            <div style="text-align: center;">
+                <img src="https://drive.google.com/uc?export=view&id=1CcgYjHBQLyfYxnDyr6q3nZdQEreu_Lqz" 
+                     class="memory-photo" 
+                     alt="من أحلى وأجمل الصور لينا سوا والأقرب لقلبي"
+                     onclick="window.open('https://drive.google.com/uc?export=view&id=1CcgYjHBQLyfYxnDyr6q3nZdQEreu_Lqz', '_blank')">
+                <div class="photo-description">من أحلى وأجمل الصور لينا سوا والأقرب لقلبي</div>
+            </div>
+        </div>
         
         <button onclick="goToMessage()">← العودة للرسالة</button>
         <button onclick="showSurprise()" style="background: linear-gradient(45deg, #4CAF50, #2E7D32);">🎀 اكشفي المفاجأة</button>
@@ -109,13 +143,6 @@
 
     <script>
         const HER_BIRTHDATE = '2000-01-30';
-        const OUR_PHOTOS = [
-            { url: 'https://drive.google.com/uc?export=view&id=1zzXL-ed-TRxA7QtxgjfihseuJUcvNksu', description: 'أول ديت لينا سوا' },
-            { url: 'https://drive.google.com/uc?export=view&id=1t_K15GyxKh9atfWwHatoeRgiLhbOYTXT', description: 'يوم ما وصلتيني كان يوم مميز' },
-            { url: 'https://drive.google.com/uc?export=view&id=1QaqAbKSRDXb3IAO06cQnvhKUjHL9Czku', description: 'يوم السوبرجيت من أميز أيامنا سوا مش محتاج' },
-            { url: 'https://drive.google.com/uc?export=view&id=1CcgYjHBQLyfYxnDyr6q3nZdQEreu_Lqz', description: 'من أحلى وأجمل الصور لينا سوا والأقرب لقلبي' }
-        ];
-        
         let songPlayed = false;
         
         function checkBirthdate() {
@@ -164,22 +191,6 @@
         function startJourney() {
             document.getElementById('message-page').classList.remove('active');
             document.getElementById('gallery-page').classList.add('active');
-            const gallery = document.getElementById('photo-gallery');
-            gallery.innerHTML = '';
-            OUR_PHOTOS.forEach(photo => {
-                const container = document.createElement('div');
-                container.style.textAlign = 'center';
-                const img = document.createElement('img');
-                img.src = photo.url;
-                img.className = 'memory-photo';
-                img.onclick = () => window.open(photo.url, '_blank');
-                const desc = document.createElement('div');
-                desc.className = 'photo-description';
-                desc.textContent = photo.description;
-                container.appendChild(img);
-                container.appendChild(desc);
-                gallery.appendChild(container);
-            });
         }
         
         function goToMessage() {
@@ -206,9 +217,6 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('birthdate').max = new Date().toISOString().split('T')[0];
-            
-            // إظهار رسالة ترحيب في الكونسول
-            console.log('💖 موقع الحب جاهز! تاريخ الميلاد: 30 يناير 2000');
         });
     </script>
 </body>
